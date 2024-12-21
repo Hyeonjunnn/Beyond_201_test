@@ -1,11 +1,18 @@
+//
+//  ascii_art_logo.c
+//  Beyond_prj_test
+//
+//  Created by 송현준 on 2024/12/21.
+//
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "ascii_art_console.h"
+#include "ascii_art_logo.h"
 
 // 콘솔 크기 가져오기 함수
-void get_console_size(int* width, int* height) {
+void get_console_size_logo(int* width, int* height) {
     struct winsize w;
     if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) == -1) {
         perror("ioctl 실패");
@@ -18,7 +25,7 @@ void get_console_size(int* width, int* height) {
 
 // 아스키 아트를 출력하는 함수
 // void print_ascii_art(const char* ascii_art[], int art_width, int art_height) {
-void print_ascii_art(void) {
+void print_ascii_art_logo() {
     // 아스키 아트 로고
     const char* ascii_art[] = {
         "   ___        __        _     ",
@@ -49,10 +56,6 @@ void print_ascii_art(void) {
     }
     printf("\n");
 
-    // 상단 소개글 출력
-    printf("Prod by ~, ~, ~, ~\n");
-    printf("Organization ~\n");
-
     // 빈 줄로 위쪽 여백 출력
     for (int i = 0; i < start_y; i++) {
         printf("\n");
@@ -72,21 +75,10 @@ void print_ascii_art(void) {
     for (int i = 0; i < (console_height - (start_y + art_height)); i++) {
         printf("\n");
     }
-
-    // 하단 소개글 출력
-    printf("Prod by\n");
-    printf("1. HyeonJun Song, https://github.com/Hyeonjunnn\n");
-    printf("2. ~\n");
-    printf("3. ~\n");
-    printf("4. ~\n");
-    printf("Organization : Beyond SW\n");
-    printf("Project Period : 2024-12-16 ~ 2024-12-31\n");
-    printf("Project Presentation : 2024-12-31\n");
-
+    
     // 하단 구분선 출력
     for (int i = 0; i < console_width; i++) {
         printf("=");
     }
-    
     printf("\n");
 }
